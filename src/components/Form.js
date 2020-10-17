@@ -3,26 +3,28 @@ import React, {Component} from 'react';
 class Form extends Component {
     constructor(props) {
         super(props);
-        this.state = {name: "", URL: <a href=""></a>}
-        this.handleChange = this.handleChange.bind(this);
-        this.onFormSubmit = this.onFormSubmit.bind(this);
+        this.state = {name: "", URL: ""}
         /*
             TODO - set initial state for link name and URL 
 
         */
     }
 
-    handleChange = event => {
-        this.setState({name: event.target.value, URL : event.target.value})
+    handleNameChange = event => {
+        this.setState({name: event.target.value})
         /*
             TODO - Logic for changing state based on form changes
         */
     }
 
+    handleURLChange = event => {
+        this.setState({URL: event.target.value})
+    }
+
     onFormSubmit = (event) => {
         // to prevent page reload on form submit
         event.preventDefault();
-        
+        this.setState({name:"", URL:""})
         /*
             TODO - Logic for calling props to handle submission and setting state changes
         */
@@ -33,17 +35,16 @@ class Form extends Component {
 
         return(
             /* TODO - Logic for returning a form element with labels and inputs for link name and URL */
-            <form onSubmit={this.onFormSubmit}>
-                 <label>
+            <form>
+                <label onSubmit={this.onFormSubmit}>
                      Name
-                     <input type="text" name={this.state.name} onChange={this.handleChange}/>
-                 </label>
-                 <input type="submit" value="submit"/>
+                     <input type="text" name="name" onChange={this.handleNameChange}/>
+                </label>
                  <label>
                      URL
-                     <input type="text" URL={this.state.URL} onChange={this.handleChange}/>
-                </label>
-                <input type="submit" value="submit"/>
+                     <input type="text" URL="name" onChange={this.handleURLChange}/>
+                 </label>
+                 <input type='submit'/>
             </form>
         )
     
