@@ -3,7 +3,10 @@ import React, {Component} from 'react';
 class Form extends Component {
     constructor(props) {
         super(props);
-        this.state = {name: "", URL: ""}
+        this.state = {
+            name: "", 
+            url: ""
+        }
         /*
             TODO - set initial state for link name and URL 
 
@@ -11,25 +14,35 @@ class Form extends Component {
     }
 
     handleNameChange = event => {
-        this.setState({name: event.target.value})
+        console.log("input updated!")
+        console.log(event.target)
+        this.setState({
+            name: event.target.value
+        })
         /*
             TODO - Logic for changing state based on form changes
         */
     }
 
     handleURLChange = event => {
-        this.setState({URL: event.target.value})
+        console.log("input updated!")
+        console.log(event.target)
+        this.setState({url: event.target.value})
     }
 
     onFormSubmit = (event) => {
         // to prevent page reload on form submit
         event.preventDefault();
-        this.setState({name:"", URL:""})
+        console.log(this.state)
+        this.props.handleSubmit(this.state);
+        this.setState({
+            name : "",
+            url: ""
+        })
+    }
         /*
             TODO - Logic for calling props to handle submission and setting state changes
         */
-
-    }
 
     render() {
 
@@ -38,13 +51,13 @@ class Form extends Component {
             <form>
                 <label onSubmit={this.onFormSubmit}>
                      Name
-                     <input type="text" name="name" onChange={this.handleNameChange}/>
+                     <input type="text" onChange={this.handleNameChange} value={this.state.name}/>
                 </label>
                  <label>
                      URL
-                     <input type="text" URL="name" onChange={this.handleURLChange}/>
+                     <input type="text" onChange={this.handleURLChange} value={this.state.url}/>
                  </label>
-                 <input type='submit'/>
+                 <button onClick={this.onFormSubmit}> Submit </button>
             </form>
         )
     
