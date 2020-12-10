@@ -5,7 +5,7 @@ class Form extends Component {
         super(props);
         this.state = {
             name: "", 
-            url: ""
+            URL: ""
         }
         /*
             TODO - set initial state for link name and URL 
@@ -27,17 +27,16 @@ class Form extends Component {
     handleURLChange = event => {
         console.log("input updated!")
         console.log(event.target)
-        this.setState({url: event.target.value})
+        this.setState({URL: event.target.value})
     }
 
     onFormSubmit = (event) => {
         // to prevent page reload on form submit
         event.preventDefault();
-        console.log(this.state)
         this.props.handleSubmit(this.state);
         this.setState({
             name : "",
-            url: ""
+            URL: ""
         })
     }
         /*
@@ -55,7 +54,7 @@ class Form extends Component {
                 </label>
                  <label>
                      URL
-                     <input type="text" onChange={this.handleURLChange} value={this.state.url}/>
+                     <input type="text" onChange={this.handleURLChange} value={this.state.URL}/>
                  </label>
                  <button onClick={this.onFormSubmit}> Submit </button>
             </form>
